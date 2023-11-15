@@ -47,3 +47,6 @@ docker build -t devopsguimaraes/web-test:multistage .
 ```bash
 docker container run -d -p 8080:8080 devopsguimaraes/web-test:multistage
 ```
+```bash
+docker build -t devopsguimaraes/web-test:target --target builder .
+```
