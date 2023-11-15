@@ -34,3 +34,16 @@ Como utilizar o Multistage Build na prática:
 Resultado:
 
 O primeiro estágio compila a aplicação Go e o segundo cria uma imagem final contendo apenas o binário necessário para executar a aplicação.
+
+```bash
+docker build -t devopsguimaraes/web-test:simples .
+```
+```bash
+docker pull  golang:1.21.0-alpine3.18
+```
+```bash
+docker build -t devopsguimaraes/web-test:multistage .
+```
+```bash
+docker container run -d -p 8080:8080 devopsguimaraes/web-test:multistage
+```
