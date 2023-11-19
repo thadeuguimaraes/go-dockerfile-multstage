@@ -25,7 +25,7 @@
 ## O que será eliminado das imagens:
 
 - Nas imagens resultantes do Multistage Build, serão eliminados os artefatos de compilação, dependências e quaisquer outros componentes não essenciais à execução da aplicação, resultando em imagens mais leves e eficientes.
-- SDK refere-se a um conjunto de ferramentas, bibliotecas e documentações que ajudam no desenvolvimento de software.
+- SDK (Software Development Kit) refere-se a um conjunto de ferramentas, bibliotecas e documentações que ajudam no desenvolvimento de software.
 
 Como utilizar o Multistage Build na prática:
 
