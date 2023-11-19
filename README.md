@@ -25,15 +25,24 @@
 ## O que será eliminado das imagens:
 
 - Nas imagens resultantes do Multistage Build, serão eliminados os artefatos de compilação, dependências e quaisquer outros componentes não essenciais à execução da aplicação, resultando em imagens mais leves e eficientes.
-
-
-## SDK:
-
 - SDK refere-se a um conjunto de ferramentas, bibliotecas e documentações que ajudam no desenvolvimento de software.
 
 Como utilizar o Multistage Build na prática:
 
-## 
+## Primeira Etapa (builder):
+
+- FROM golang:1.21.0-alpine3.18 as builder: Define a primeira etapa do build multistage usando a imagem base do Golang versão 1.21.0 com Alpine Linux 3.18 como builder.
+- WORKDIR /build: Define o diretório de trabalho como /build.
+- COPY . .: Copia todos os arquivos do diretório local para o diretório de trabalho dentro do container.
+- RUN go build -o webtest: Compila o código fonte Go presente no diretório de trabalho e cria um executável chamado webtest.
+
+## Segunda Etapa (prod):
+
+- FROM alpine:3.18 as prod: Inicia a segunda etapa do multistage build, utilizando a imagem base do Alpine Linux 3.18 como prod.
+- WORKDIR /app: Define o diretório de trabalho como /app.
+- COPY --from=builder /build/webtest .: Copia o executável webtest gerado na etapa anterior (builder) para o diretório de trabalho atual na nova imagem.
+- CMD [ "./webtest" ]: Define o comando padrão a ser executado quando um container baseado nessa imagem for iniciado. Neste caso, executa o arquivo webtest.
+
 ```bash
 docker build -t devopsguimaraes/web-test:simples .
 ```
